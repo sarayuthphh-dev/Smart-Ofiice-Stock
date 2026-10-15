@@ -1,0 +1,36 @@
+services:
+  web:
+    build: .
+    ports: ["8080:80"]
+    environment:
+      APP_BASE_URL: http://localhost:8080
+      DB_DSN: mysql:host=db;port=3306;dbname=smart_office_stock;charset=utf8mb4
+      DB_USER: smart_stock
+      DB_PASSWORD: ${DB_PASSWORD:?กำหนด DB_PASSWORD ในไฟล์ .env}
+    volumes:
+      - ./config/config.example.php:/var/www/html/config/config.php:ro
+      - uploads:/var/www/html/storage/uploads
+      - branding:/var/www/html/storage/branding
+      - logs:/var/www/html/storage/logs
+    depends_on:
+      db: {condition: service_healthy}
+  db:
+    image: mariadb:11.4
+    environment:
+      MARIADB_DATABASE: smart_office_stock
+      MARIADB_USER: smart_stock
+      MARIADB_PASSWORD: ${DB_PASSWORD:?กำหนด DB_PASSWORD ในไฟล์ .env}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?กำหนด DB_ROOT_PASSWORD ในไฟล์ .env}
+      TZ: Asia/Bangkok
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes: ["dbdata:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+volumes:
+  dbdata:
+  uploads:
+  branding:
+  logs:

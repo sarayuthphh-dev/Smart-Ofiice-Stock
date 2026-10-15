@@ -1,0 +1,9 @@
+Options -Indexes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(app|bin|config|database|docs|storage|tests)(/|$) - [F,L,NC]
+</IfModule>
+<FilesMatch "^(composer\.(json|lock)|docker-compose\.yml|Dockerfile|README\.md|\.env.*)$">
+  Require all denied
+</FilesMatch>
+
