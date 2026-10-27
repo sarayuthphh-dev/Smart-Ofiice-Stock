@@ -39,5 +39,6 @@ require_once __DIR__ . '/StockService.php';
 require_once __DIR__ . '/RequestService.php';
 require_once __DIR__ . '/MaterialImportService.php';
 require_once __DIR__ . '/LineNotificationService.php';
+require_once __DIR__ . '/LineAccountLinkService.php';
 require_once __DIR__ . '/StockIntegrityService.php';
 require_once __DIR__ . '/ExecutiveReportService.php';

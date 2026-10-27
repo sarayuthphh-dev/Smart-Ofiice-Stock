@@ -46,6 +46,7 @@ final class LineNotificationService
         return [
             'enabled' => $this->setting('line_notifications_enabled', '0') === '1',
             'token_configured' => trim((string)$this->options['channel_access_token']) !== '',
+            'webhook_configured' => trim((string)cfg('line.channel_secret', '')) !== '',
             'recipient_count' => count($recipients),
         ];
     }

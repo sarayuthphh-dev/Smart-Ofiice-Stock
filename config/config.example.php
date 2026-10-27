@@ -23,6 +23,9 @@ return [
     'line' => [
         // สร้างจาก LINE Developers Console > Messaging API ห้าม commit token จริงลง Git
         'channel_access_token' => getenv('LINE_CHANNEL_ACCESS_TOKEN') ?: '',
+        // ใช้ตรวจลายเซ็น Webhook จาก LINE Developers Console > Basic settings
+        'channel_secret' => getenv('LINE_CHANNEL_SECRET') ?: '',
         'api_url' => 'https://api.line.me/v2/bot/message/push',
+        'reply_api_url' => 'https://api.line.me/v2/bot/message/reply',
     ],
 ];

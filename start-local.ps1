@@ -20,8 +20,12 @@ if (!(Test-LocalPort 3307)) {
 }
 
 if (!(Test-LocalPort 8080)) {
-    $args = '-n -d extension_dir=.runtime/php/ext -d extension=php_pdo_mysql.dll -d extension=php_mbstring.dll -d extension=php_fileinfo.dll -d extension=php_openssl.dll -S 127.0.0.1:8080 -t public'
+    $args = '-n -d extension_dir=.runtime/php/ext -d extension=php_pdo_mysql.dll -d extension=php_mbstring.dll -d extension=php_fileinfo.dll -d extension=php_openssl.dll -S 0.0.0.0:8080 -t public'
     Start-Process -FilePath $php -ArgumentList $args -WorkingDirectory $project -WindowStyle Hidden
 }
 
-Write-Output 'ระบบพร้อมที่ http://127.0.0.1:8080'
+Write-Output 'ระบบพร้อมในเครื่องที่ http://127.0.0.1:8080'
+$lanIp = [Net.Dns]::GetHostAddresses([Net.Dns]::GetHostName()) |
+    Where-Object { $_.AddressFamily -eq [Net.Sockets.AddressFamily]::InterNetwork -and ![Net.IPAddress]::IsLoopback($_) } |
+    Select-Object -First 1
+if ($lanIp) { Write-Output "ระบบพร้อมในเครือข่ายที่ http://${lanIp}:8080" }

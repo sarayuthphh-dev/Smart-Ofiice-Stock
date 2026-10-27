@@ -32,6 +32,7 @@ function menu_catalog():array{return[
     'request_form'=>['label'=>'เบิกวัสดุ','icon'=>'plus','group'=>'งานเบิกวัสดุ','roles'=>['requester'],'order'=>20],
     'my_requests'=>['label'=>'คำขอของฉัน','icon'=>'clipboard','group'=>'งานเบิกวัสดุ','roles'=>['requester'],'order'=>30],
     'confirm_receipts'=>['label'=>'ยืนยันรับของ','icon'=>'check','group'=>'งานเบิกวัสดุ','roles'=>['requester'],'order'=>40],
+    'line_connect'=>['label'=>'เชื่อมต่อ LINE','icon'=>'bell','group'=>'งานเบิกวัสดุ','roles'=>['requester'],'order'=>45],
     'approvals'=>['label'=>'อนุมัติคำขอ','icon'=>'approval','group'=>'งานอนุมัติ','roles'=>['approver'],'order'=>50],
     'issues'=>['label'=>'จ่ายวัสดุ','icon'=>'box','group'=>'งานพัสดุ','roles'=>['supply'],'order'=>60],
     'returns'=>['label'=>'คืนวัสดุ','icon'=>'return','group'=>'งานพัสดุ','roles'=>['supply'],'order'=>70],
